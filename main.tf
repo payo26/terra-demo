@@ -11,6 +11,15 @@ provider "azurerm" {
   subscription_id = "790aa1f8-6209-43c8-8546-2cbff23d845f"
 }
 
+terraform {
+    backend "azurerm" {
+        resource_group_name  = "wind-rg"
+        storage_account_name = "windstorage26"
+        container_name       = "tfstate"
+        key                  = "terraform.tfstate"
+    }                                       
+  required_version = ">= 1.0.0"
+}
 # Create a resource group
 resource "azurerm_resource_group" "wind-rg" {
   name     = "wind-rg"
